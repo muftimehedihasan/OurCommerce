@@ -26,7 +26,7 @@ class CustomerProfileSeeder extends Seeder
                 'cus_postcode' => $faker->postcode(),
                 'cus_country' => $faker->country(),
                 'cus_phone' => $faker->phoneNumber(),
-                'cus_fax' => $faker->optional()->phoneNumber(), // Fax is optional
+                'cus_fax' => $faker->optional()->phoneNumber(),
                 'ship_name' => $faker->name(),
                 'ship_add' => $faker->streetAddress(),
                 'ship_city' => $faker->city(),
