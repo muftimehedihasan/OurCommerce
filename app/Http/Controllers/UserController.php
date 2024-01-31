@@ -31,10 +31,9 @@ class UserController extends Controller
             $details = ['code' => $OTP];
             Mail::to($UserEmail)->send(new OTPMail($details));
             User::updateOrCreate(['email' => $UserEmail], ['email'=>$UserEmail,'otp'=>$OTP]);
-            // dd($UserEmail);
             return ResponseHelper::Out('success',"A 6 Digit OTP has been send to your email address",200);
         } catch (Exception $e) {
-            return ResponseHelper::Out('fail',$e->getMessage(),200);
+            return ResponseHelper::Out('fail',$e,200);
         }
     }
 
@@ -45,6 +44,7 @@ class UserController extends Controller
             $OTP=$request->OTP;
 
             $verification= User::where('email',$UserEmail)->where('otp',$OTP)->first();
+            // dd($verification);
 
             if($verification){
                 User::where('email',$UserEmail)->where('otp',$OTP)->update(['otp'=>'0']);
@@ -57,7 +57,7 @@ class UserController extends Controller
     }
 
     function UserLogout(){
-        return redirect('/')->cookie('token','',-1);
+        return redirect('/BrandList')->cookie('token','',-1);
     }
 }
 

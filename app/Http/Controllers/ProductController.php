@@ -30,7 +30,7 @@ class ProductController extends Controller
     }
 
 
-    public function ListProductCategory(Request $request):JsonResponse{
+    public function ListProductByCategory(Request $request):JsonResponse{
         $data=Product::where('category_id',$request->id)->with('brand','category')->get();
         return  ResponseHelper::Out('success',$data,200);
     }
